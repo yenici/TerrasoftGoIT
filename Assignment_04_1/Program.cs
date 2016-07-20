@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment_04_1
 {
@@ -31,7 +27,7 @@ namespace Assignment_04_1
 
         public static void Main(string[] args)
         {
-            Double _dResult = 0D, _dLeftOperand, _dRightOperand;
+            Double _dResult, _dLeftOperand, _dRightOperand;
             Char _cOperation;
             Char _cContinue = 'y';
 
