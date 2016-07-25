@@ -23,11 +23,13 @@ namespace Assignment_04_1
         private const String VERSION = "v1.0.0";
 
         private const Char ALPHABET_DECIMAL_POINT = '.';
-        private const String ALPHABET_OPERATIONS = "+-*/%^";
+        private static readonly Char[] ALPHABET_OPERATIONS = {'+', '-', '*', '/', '%', '^'};
 
         public static void Main(string[] args)
         {
-            Double _dResult, _dLeftOperand, _dRightOperand;
+            Double _dResult;
+            Double _dLeftOperand;
+            Double _dRightOperand;
             Char _cOperation;
             Char _cContinue = 'y';
 
@@ -63,14 +65,14 @@ namespace Assignment_04_1
             {
                 Console.Write("Enter an operation: ");
                 KeyPressed = Console.ReadKey();
-                if (ALPHABET_OPERATIONS.IndexOf(KeyPressed.KeyChar) >= 0)
+                if (Array.IndexOf(ALPHABET_OPERATIONS, KeyPressed.KeyChar) >= 0)
                 {
                     break;
                 }
                 else
                 {
                     Console.Write("\nWrong input.\tAvailable operations: ");
-                    Console.WriteLine(String.Join(", ", ALPHABET_OPERATIONS.ToCharArray()));
+                    Console.WriteLine(String.Join(", ", ALPHABET_OPERATIONS));
                 }
             }
             return KeyPressed.KeyChar;
