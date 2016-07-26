@@ -6,7 +6,7 @@ namespace Examination_Module_1
     public static class ProductList
     {
         private static List<Product> products = new List<Product>();
-        public static void printProductList()
+        public static void Print()
         {
             Console.WriteLine(new String('-', 10) + " Products " + new String('-', 10) + "\n");
             for (int i = 0; i < ProductList.products.Count; i++)
@@ -17,7 +17,7 @@ namespace Examination_Module_1
                     ProductList.products[i].Price);
             }
         }
-        public static Product getProductByIndex(int index)
+        public static Product GetProductByIndex(int index)
         {
             if (index >= 0 && index < products.Count)
             {
@@ -28,11 +28,11 @@ namespace Examination_Module_1
                 return null;
             }
         }
-        public static int getProductsCount()
+        public static int GetProductsCount()
         {
             return products.Count;
         }
-        public static void createFooList()
+        public static void CreateFooList()
         {
             ProductList.products.Clear();
             products.Add(new Product("Apple", 1.00M));

@@ -6,19 +6,18 @@ namespace Examination_Module_1
     {
         static void Main(string[] args)
         {
-            String _sActionInput, _sQuantityInput, _sDiscountInput;
+            String _sActionInput, _sQuantityInput, _sDiscountInput, _sKeyCharacter;
             Int32 _iAction = 0;
             Decimal _dQuantity, _dDiscount;
             Product product;
-            Char _cKeyCharacter;
 
-            ProductList.createFooList();
+            ProductList.CreateFooList();
 
             ShoppingCart shoppingCart = new ShoppingCart();
 
             Console.WriteLine("Choose products you want to by (enter a corresponding number):\n");
-            ProductList.printProductList();
-            Int32 _iCheckoutNumber = ProductList.getProductsCount() + 1;
+            ProductList.Print();
+            Int32 _iCheckoutNumber = ProductList.GetProductsCount() + 1;
             Console.WriteLine("\n{0,2}. Checkout", _iCheckoutNumber);
             Console.WriteLine(new String('-', 30));
 
@@ -34,7 +33,7 @@ namespace Examination_Module_1
                     }
                     else
                     {
-                        product = ProductList.getProductByIndex(_iAction - 1);
+                        product = ProductList.GetProductByIndex(_iAction - 1);
                         if (product != null)
                         {
                             Console.Write("Product: {0,-10}\tQuantity: ", product.Name);
@@ -43,9 +42,9 @@ namespace Examination_Module_1
                             {
                                 try
                                 {
-                                    shoppingCart.addItem(product, _dQuantity);
+                                    shoppingCart.AddItem(product, _dQuantity);
                                     Console.WriteLine("You have {0} item(s) in your cart. Total is {1:N2}",
-                                        shoppingCart.getItemsCount(), shoppingCart.getTotal());
+                                        shoppingCart.GetItemsCount(), shoppingCart.GetTotal());
                                 }
                                 catch (Exception e)
                                 {
@@ -64,11 +63,11 @@ namespace Examination_Module_1
                     Console.WriteLine("Wrong input. Please enter a number corresponding to a list item.");
                 }
             }
-            if (shoppingCart.getItemsCount() > 0)
+            if (shoppingCart.GetItemsCount() > 0)
             {
                 Console.Write("\nDo you have a discount (y/n): ");
-                _cKeyCharacter = Console.ReadKey().KeyChar;
-                if (_cKeyCharacter == 'y' || _cKeyCharacter == 'Y')
+                _sKeyCharacter = Console.ReadLine();
+                if (_sKeyCharacter[0] == 'y' || _sKeyCharacter[0] == 'Y')
                 {
                     Console.Write("Enter a value of discount (percentage): ");
                     _sDiscountInput = Console.ReadLine();
@@ -80,7 +79,7 @@ namespace Examination_Module_1
                         }
                     }
                 }
-                shoppingCart.print();
+                shoppingCart.Print();
             }
             Console.WriteLine("Bye!");
             Console.ReadKey();

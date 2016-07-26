@@ -7,7 +7,7 @@ namespace Examination_Module_1
     {
         private Dictionary<Product, Decimal> cardItems = new Dictionary<Product, Decimal>();
         public Decimal Discount {get; set;}
-        public void print()
+        public void Print()
         {
             Console.WriteLine("\n" + new String('-', 21) + " Check: " + new String('-', 21));
             foreach (KeyValuePair<Product, Decimal> item in cardItems)
@@ -19,11 +19,11 @@ namespace Examination_Module_1
                     item.Key.Price * item.Value);
             }
             Console.WriteLine(new String('-', 50));
-            Console.WriteLine("Total:               $ {0:N2}", getTotal());
-            Console.WriteLine("Discount:            $ {0:N2}", getDiscount());
-            Console.WriteLine("Total with discount: $ {0:N2}", getTotal() - getDiscount());
+            Console.WriteLine("Total:               $ {0:N2}", GetTotal());
+            Console.WriteLine("Discount:            $ {0:N2}", GetDiscount());
+            Console.WriteLine("Total with discount: $ {0:N2}", GetTotal() - GetDiscount());
         }
-        public Decimal addItem(Product product, Decimal quantity)
+        public Decimal AddItem(Product product, Decimal quantity)
         {
             if (cardItems.ContainsKey(product))
             {
@@ -50,15 +50,15 @@ namespace Examination_Module_1
             }
             return cardItems[product];
         }
-        public void removeItem(Product product)
+        public void RemoveItem(Product product)
         {
             cardItems.Remove(product);
         }
-        public int getItemsCount()
+        public int GetItemsCount()
         {
             return cardItems.Count;
         }
-        public Decimal getTotal()
+        public Decimal GetTotal()
         {
             Decimal _dTotal = 0M;
             foreach (KeyValuePair<Product, Decimal> item in cardItems)
@@ -67,9 +67,9 @@ namespace Examination_Module_1
             }
             return _dTotal;
         }
-        public Decimal getDiscount()
+        public Decimal GetDiscount()
         {
-            return Math.Round(getTotal() * Discount / 100, 2);
+            return Math.Round(GetTotal() * Discount / 100, 2);
         }
     }
 }
