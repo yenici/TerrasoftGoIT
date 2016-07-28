@@ -33,15 +33,50 @@ namespace Assignment_05_1
                     + activity + ".");
             }
         }
+        public void RemoveActivity(String activity)
+        {
+            if (Activities.ContainsKey(activity))
+            {
+                Activities.Remove(activity);
+            }
+            else
+            {
+                throw new Exception("The activity " + activity +" is not found in " + Name + "'s activity list. ");
+            }
+        }
+        public float GetAvgScore()
+        {
+            float avg = 0F;
+            foreach (Byte score in Activities.Values)
+            {
+                avg += score;
+            }
+            return Activities.Count == 0? 0F: avg / Activities.Count;
+        }
+        public int GetTotalScore()
+        {
+            int total = 0;
+            foreach (Byte score in Activities.Values)
+            {
+                total += score;
+            }
+            return total;
+        }
+        public int GetActivitiesCount()
+        {
+            return Activities.Count;
+        }
         protected void Print(int number = 0)
         {
             if (number > 0)
             {
-                Console.Write("{0,4}. {1, -30}", number, Name);
+                Console.Write("{0,4}. {1, -30}\t{2, 3}\t{3,4}\t{4,5:N1}\t",
+                    number, Name, Activities.Count, GetTotalScore(), GetAvgScore());
             }
             else
             {
-                Console.Write("{1, -30}", Name);
+                Console.Write("{0, -30}\t{1, 3}\t{2,4}\t{3,5:N1}\t",
+                    Name, Activities.Count, GetTotalScore(), GetAvgScore());
             }
         }
         public List<String> PrintActivities()

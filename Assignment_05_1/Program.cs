@@ -14,7 +14,6 @@ namespace Assignment_05_1
 
             scoutCamp.ShowMenu();
         }
-
         private static void CreateFooActivitiesList()
         {
             BoyScout.AddBoysActivity("Soccer");

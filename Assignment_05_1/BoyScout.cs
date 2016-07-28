@@ -5,13 +5,17 @@ namespace Assignment_05_1
 {
     public class BoyScout:Scout
     {
-        private static HashSet<String> BoysActivities = new HashSet<String>();
+        private static List<String> BoysActivities = new List<String>();
         public BoyScout(String name): base(name)
         { }
 
         public static void AddBoysActivity(String activity)
         {
             BoysActivities.Add(activity);
+        }
+        public static List<String> GetBoysActivities()
+        {
+            return BoysActivities;
         }
         new public BoyScout AddActivity(String activity, Byte score)
         {
