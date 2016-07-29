@@ -132,7 +132,7 @@ namespace Assignment_05_1
             while (!exit)
             {
                 scoutActivities = TypeScoutActivities(scout);
-                Console.Write("Enter a number in accordence to your choice: ");
+                Console.Write("Enter a number in accordance to your choice: ");
                 Int32.TryParse(Console.ReadLine(), out action);
                 if (action <= 0 || action > scoutActivities.Count + 2)
                 {
