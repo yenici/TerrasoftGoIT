@@ -183,11 +183,11 @@ namespace Assignment_05_1
             Byte score = 0;
             if (scout is BoyScout)
             {
-                activities = BoyScout.GetBoysActivities().Except(scoutActivities).ToList();
+                activities = BoyScout.FilterBoysActivities(scoutActivities);
             }
             else
             {
-                activities = GirlScout.GetGirlsActivities().Except(scoutActivities).ToList();
+                activities = GirlScout.FilterGirlsActivities(scoutActivities);
             }
             if (activities.Count > 0)
             {

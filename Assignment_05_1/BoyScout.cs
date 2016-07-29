@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment_05_1
 {
@@ -13,9 +14,9 @@ namespace Assignment_05_1
         {
             BoysActivities.Add(activity);
         }
-        public static List<String> GetBoysActivities()
+        public static List<String> FilterBoysActivities(List<String> activities)
         {
-            return BoysActivities;
+            return BoyScout.BoysActivities.Except(activities).ToList();
         }
         new public BoyScout AddActivity(String activity, Byte score)
         {
