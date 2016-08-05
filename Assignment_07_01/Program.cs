@@ -49,7 +49,7 @@ namespace Assignment_07_01
             return Wage * WorkingHours;
         }
     }
-    public class Doctor : Employee, IPayment
+    public class Doctor : Employee
     {
         public Decimal Bonus { get; set; }
         public ushort PatientsCount { get; set; }
@@ -59,7 +59,7 @@ namespace Assignment_07_01
             return base.CalculatePay() + this.Bonus * this.PatientsCount;
         }
     }
-    public class Psychologist : Employee, IPayment
+    public class Psychologist : Employee
     {
         public static readonly ushort PatientsLimit;
         public ushort PatientsCount { get; set; }
@@ -69,7 +69,7 @@ namespace Assignment_07_01
             return base.CalculatePay();
         }
     }
-    public class Guard : Employee, IPayment
+    public class Guard : Employee
     {
         public static readonly Decimal NightlyRate = 2;
         public byte NightHours { get; set; }
@@ -79,7 +79,7 @@ namespace Assignment_07_01
             return base.CalculatePay() + base.Wage * this.NightHours * (NightlyRate - 1M);
         }
     }
-    public class Worker : Employee, IPayment
+    public class Worker : Employee
     {
         public ushort OvertimeHours { get; set; }
         override public Decimal CalculatePay()
