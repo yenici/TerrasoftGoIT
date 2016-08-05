@@ -45,7 +45,7 @@ namespace Assignment_07_01
         public ushort WorkingHours { get; set; }
         public virtual Decimal CalculatePay()
         {
-            Console.WriteLine("Employee.CalculatePay");
+            Console.WriteLine("\t\tEmployee.CalculatePay");
             return Wage * WorkingHours;
         }
     }
@@ -55,7 +55,7 @@ namespace Assignment_07_01
         public ushort PatientsCount { get; set; }
         override public Decimal CalculatePay()
         {
-            Console.WriteLine("Doctor.CalculatePay");
+            Console.WriteLine("\tDoctor.CalculatePay");
             return base.CalculatePay() + this.Bonus * this.PatientsCount;
         }
     }
@@ -65,7 +65,7 @@ namespace Assignment_07_01
         public ushort PatientsCount { get; set; }
         override public Decimal CalculatePay()
         {
-            Console.WriteLine("Psychologist.CalculatePay");
+            Console.WriteLine("\tPsychologist.CalculatePay");
             return base.CalculatePay();
         }
     }
@@ -75,7 +75,7 @@ namespace Assignment_07_01
         public byte NightHours { get; set; }
         override public Decimal CalculatePay()
         {
-            Console.WriteLine("Guard.CalculatePay");
+            Console.WriteLine("\tGuard.CalculatePay");
             return base.CalculatePay() + base.Wage * this.NightHours * (NightlyRate - 1M);
         }
     }
@@ -84,7 +84,7 @@ namespace Assignment_07_01
         public ushort OvertimeHours { get; set; }
         override public Decimal CalculatePay()
         {
-            Console.WriteLine("Worker.CalculatePay");
+            Console.WriteLine("\tWorker.CalculatePay");
             return 0M;
         }
     }
