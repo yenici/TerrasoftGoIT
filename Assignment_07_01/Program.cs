@@ -15,7 +15,9 @@ namespace Assignment_07_01
             {
                 employee.CalculatePay();
             }
-            IPayment[] payment = new IPayment[] { new Doctor(), new Psychologist(), new Guard(), new Worker() };
+            Console.WriteLine("=======================================================");
+            IPayment[] payment = new IPayment[] { new Doctor(), new Psychologist(), new Guard(), new Worker(),
+                new Trainee(new Doctor()), new Trainee(new Guard())};
             foreach (var employee in payment)
             {
                 employee.CalculatePay();
@@ -96,6 +98,7 @@ namespace Assignment_07_01
         }
         public Decimal CalculatePay()
         {
+            Console.WriteLine("Trainee.CalculatePay");
             return master.CalculatePay();
         }
     }
