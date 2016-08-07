@@ -9,7 +9,7 @@ namespace Assignment_07_01
         private List<Employee> employees = new List<Employee>();
         public void StartMenu()
         {
-            ConsoleKeyInfo key;
+            Byte key;
             Boolean quit = false;
             while (!quit)
             {
@@ -23,23 +23,26 @@ namespace Assignment_07_01
                 Console.WriteLine("\n4. List trainees and calculate salary.");
                 Console.WriteLine("\n5. Quit.");
                 Console.WriteLine("\nPress a key with an appropriate number...");
-                key = Console.ReadKey();
-                switch (key.KeyChar)
+                if (Byte.TryParse(Console.ReadLine(), out key))
                 {
-                    case '1':
-                        this.AddEmployee();
-                        break;
-                    case '2':
-                        this.ListEmployees();
-                        break;
-                    case '3':
-                        this.AddTrainee();
-                        break;
-                    case '4':
-                        break;
-                    case '5':
-                        quit = true;
-                        break;
+                    switch (key)
+                    {
+                        case 1:
+                            this.AddEmployee();
+                            break;
+                        case 2:
+                            this.ListEmployees();
+                            break;
+                        case 3:
+                            this.AddTrainee();
+                            break;
+                        case 4:
+                            this.ListTrainees();
+                            break;
+                        case 5:
+                            quit = true;
+                            break;
+                    }
                 }
             }
         }
@@ -165,12 +168,56 @@ namespace Assignment_07_01
                 }
             }
         }
+        public void ListTrainees()
+        {
+            int employee;
+            List<Employee> list = this.GetTrainees();
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("List trainees and calculate salary");
+                Console.WriteLine("--------------------------------------------------\n");
+                for (int i = 0; i < list.Count; i++)
+                    Console.WriteLine("{0,2}. {1,-40} {2}", i + 1, list[i].Name, list[i].GetPositionName());
+                Console.WriteLine("{0,2}. Quit", list.Count + 1);
+                Console.Write("\nEnter an appropriate number: ");
+                if (Int32.TryParse(Console.ReadLine(), out employee))
+                {
+                    if (employee > 0 && employee <= list.Count + 1)
+                    {
+                        if (--employee == list.Count)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            list[employee].SetSalaryParameters();
+                            Console.Clear();
+                            list[employee].CalculateSalary(true);
+                            Console.WriteLine("\nPress any key to continue...");
+                            Console.ReadKey();
+                        }
+                    }
+                }
+            }
+        }
         private List<Employee> GetEmployees()
         {
             var result = new List<Employee>();
             foreach (Employee employee in this.employees)
             {
                 if (employee.Mentor == null)
+                    result.Add(employee);
+            }
+            return result;
+        }
+        private List<Employee> GetTrainees()
+        {
+            var result = new List<Employee>();
+            foreach (Employee employee in this.employees)
+            {
+                if (employee.Mentor != null)
                     result.Add(employee);
             }
             return result;
