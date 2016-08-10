@@ -92,7 +92,7 @@ namespace Assignment_07_01
         }
         public void ListEmployees()
         {
-            int employee;
+            int choosenItem;
             List<Employee> list = this.GetEmployees();
             while (true)
             {
@@ -103,20 +103,22 @@ namespace Assignment_07_01
                     Console.WriteLine("{0,2}. {1,-40} {2}", i + 1, list[i].Name, list[i].GetPositionName());
                 Console.WriteLine("{0,2}. Quit", list.Count + 1);
                 Console.Write("\nEnter an appropriate number: ");
-                if (Int32.TryParse(Console.ReadLine(), out employee))
+                if (Int32.TryParse(Console.ReadLine(), out choosenItem))
                 {
-                    if (employee > 0 && employee <= list.Count + 1)
+                    if (choosenItem > 0 && choosenItem <= list.Count + 1)
                     {
-                        if (--employee == list.Count)
+                        --choosenItem; // Reflect the choosen item to [0, listCount] scale
+                        if (choosenItem == list.Count)
                         {
+                            // 'Quit' item selected
                             break;
                         }
                         else
                         {
                             Console.Clear();
-                            list[employee].SetSalaryParameters();
+                            list[choosenItem].SetSalaryParameters();
                             Console.Clear();
-                            list[employee].CalculateSalary(true);
+                            list[choosenItem].CalculateSalary(true);
                             Console.WriteLine("\nPress any key to continue...");
                             Console.ReadKey();
                         }
@@ -127,7 +129,7 @@ namespace Assignment_07_01
         public void AddTrainee()
         {
             String name = "";
-            int employee;
+            int choosenEmployee;
             List<Employee> list = this.GetEmployees();
             while (true)
             {
@@ -148,18 +150,27 @@ namespace Assignment_07_01
                     Console.WriteLine("{0,2}. {1,-40} {2}", i + 1, list[i].Name, list[i].GetPositionName());
                 Console.WriteLine("{0,2}. Quit", list.Count + 1);
                 Console.Write("\nEnter an appropriate number: ");
-                if (Int32.TryParse(Console.ReadLine(), out employee))
+                if (Int32.TryParse(Console.ReadLine(), out choosenEmployee))
                 {
-                    if (employee > 0 && employee <= list.Count + 1)
+                    if (choosenEmployee > 0 && choosenEmployee <= list.Count + 1)
                     {
-                        if (--employee == list.Count)
+                        --choosenEmployee; // Reflect the choosen employee to [0, listCount] scale
+                        if (choosenEmployee == list.Count)
                         {
                             break;
                         }
                         else
                         {
-                            this.employees.Add(Trainee.CreateTrainee(list[employee], name));
-                            Console.WriteLine("A new trainee added.");
+                            try
+                            {
+                                Employee trainee = Trainee.CreateTrainee(list[choosenEmployee], name);
+                                this.employees.Add(trainee);
+                                Console.WriteLine("A new trainee added.");
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                            };
                             Console.WriteLine("Press any key to continue.");
                             Console.ReadKey();
                             break;
@@ -170,7 +181,7 @@ namespace Assignment_07_01
         }
         public void ListTrainees()
         {
-            int employee;
+            int choosenTrainee;
             List<Employee> list = this.GetTrainees();
             while (true)
             {
@@ -181,20 +192,22 @@ namespace Assignment_07_01
                     Console.WriteLine("{0,2}. {1,-40} {2}", i + 1, list[i].Name, list[i].GetPositionName());
                 Console.WriteLine("{0,2}. Quit", list.Count + 1);
                 Console.Write("\nEnter an appropriate number: ");
-                if (Int32.TryParse(Console.ReadLine(), out employee))
+                if (Int32.TryParse(Console.ReadLine(), out choosenTrainee))
                 {
-                    if (employee > 0 && employee <= list.Count + 1)
+                    if (choosenTrainee > 0 && choosenTrainee <= list.Count + 1)
                     {
-                        if (--employee == list.Count)
+                        --choosenTrainee; // Reflect the choosen employee to [0, listCount] scale
+                        if (choosenTrainee == list.Count)
                         {
+                            // 'Quit' item selected
                             break;
                         }
                         else
                         {
                             Console.Clear();
-                            list[employee].SetSalaryParameters();
+                            list[choosenTrainee].SetSalaryParameters();
                             Console.Clear();
-                            list[employee].CalculateSalary(true);
+                            list[choosenTrainee].CalculateSalary(true);
                             Console.WriteLine("\nPress any key to continue...");
                             Console.ReadKey();
                         }
