@@ -12,7 +12,7 @@ namespace Assignment_09_2
             {
                 Console.Clear();
                 Calculator calculator = new Calculator();
-                calculator.Calculate();
+                calculator.StartCalculation();
                 while (true)
                 {
                     Console.ForegroundColor = ConsoleColor.Gray;

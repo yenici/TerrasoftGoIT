@@ -4,15 +4,24 @@ using System.Text.RegularExpressions;
 
 namespace Assignment_09_2
 {
+    public delegate LongNumber MathOperations(LongNumber a, LongNumber b);
     public class Calculator
     {
+        public LongNumber Register1 { get; set; }
+        public LongNumber Register2 { get; set; }
+        private event MathOperations CalculateEvent;
+        public void StartCalculation()
+        {
+            this.Register1 = GetOperand("Enter the first  argument: ");
+            this.Register2 = GetOperand("Enter the second argument: ");
+            GetOperations();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            this.Calculate();
+        }
         public void Calculate()
         {
-            LongNumber operand1 = GetOperand("Enter the first  argument: ");
-            LongNumber operand2 = GetOperand("Enter the second argument: ");
-            MathOperations mathOperations = GetOperations();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            mathOperations.Invoke(operand1, operand2);
+            if (CalculateEvent != default(MathOperations))
+                CalculateEvent.Invoke(this.Register1, this.Register2);
         }
         public LongNumber GetOperand(String message)
         {
@@ -35,16 +44,15 @@ namespace Assignment_09_2
             }
             return operand;
         }
-        public MathOperations GetOperations()
+        public void GetOperations()
         {
-            MathOperations operations = null;
             String input, ops;
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("\nSelect operations by entering corresponding numbers.");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("1. Addition");
             Console.WriteLine("2. Subtraction");
-            Console.WriteLine("3. Integer Division");
+            Console.WriteLine("3. Division");
             Console.WriteLine("4. Multiplication");
             int currentLineCursor = Console.CursorTop;
             while (true)
@@ -60,16 +68,16 @@ namespace Assignment_09_2
                         switch (op)
                         {
                             case '1':
-                                operations += Calculator.Add;
+                                this.CalculateEvent += Calculator.Add;
                                 break;
                             case '2':
-                                operations += Calculator.Subtract;
+                                this.CalculateEvent += Calculator.Subtract;
                                 break;
                             case '3':
-                                operations += Calculator.Divide;
+                                this.CalculateEvent += Calculator.Divide;
                                 break;
                             case '4':
-                                operations += Calculator.Multiply;
+                                this.CalculateEvent += Calculator.Multiply;
                                 break;
                         }
                     Console.WriteLine();
@@ -83,7 +91,6 @@ namespace Assignment_09_2
                 Console.Write(new String(' ', 2 * Console.WindowWidth)); // Clear two lines
                 Console.SetCursorPosition(0, currentLineCursor);
             }
-            return operations;
         }
         public static LongNumber Add(LongNumber a, LongNumber b)
         {
@@ -110,5 +117,4 @@ namespace Assignment_09_2
             return result;
         }
     }
-    public delegate LongNumber MathOperations(LongNumber a, LongNumber b);
 }
