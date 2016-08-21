@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace Assignment_10_1
 {
-    class Program
+    class Programm
     {
         static void Main(string[] args)
         {
+            Boolean quit = false;
+            while (!quit)
+            {
+                Console.Clear();
+                Translator.MakeTranslation(Translator.GetInput(), Translator.GetOutput());
+                quit = !Translator.CheckForContinue();
+            }
         }
     }
 }
