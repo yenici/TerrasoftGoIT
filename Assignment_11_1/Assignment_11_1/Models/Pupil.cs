@@ -6,34 +6,55 @@ using System.Threading.Tasks;
 
 namespace Assignment_11_1.Models
 {
+    [Serializable]
     class Pupil
     {
+        private static uint id = 0;
+        public static readonly byte PUPIL_MIN_AGE = 6;
+        public static readonly byte PUPIL_MAX_AGE = 90;
+        public uint Id { get; private set; }
         public string Name { get; set; }
         public int Age { get; set; }
-        public Dictionary<string, byte> Grades { get; set; }
-        public Pupil(string name, int age)
+        private Grades grades;
+        private Pupil() { }
+        public static Pupil CreatePupil(string name, int age)
         {
-            this.Name = name;
-            this.Age = age;
+            if (name.Trim().Length <= 0)
+                throw new Exception("Incorrect pupil's name. The name should not be an empty string.");
+            if (age < Pupil.PUPIL_MIN_AGE || age > Pupil.PUPIL_MAX_AGE)
+                throw new Exception(string.Format(
+                    "Incorrect age {0}. The age should be between {1} and {2}.",
+                    age, Pupil.PUPIL_MIN_AGE, Pupil.PUPIL_MAX_AGE));
+            return new Models.Pupil()
+            {
+                Id = ++Pupil.id,
+                Name = name,
+                Age = age,
+                grades = new Grades()
+            };
         }
-
-        public Pupil()
+        public void AddGrade(string name, byte grade)
         {
+            this.grades.AddGrade(name, grade);
+        }
+        public IEnumerable<KeyValuePair<string, byte>> GetPupilGrades()
+        {
+            foreach (KeyValuePair<string, byte> grade in this.grades)
+                yield return grade;
         }
         public float GetAverageGrade()
         {
-            if (Grades.Count > 0)
+            if (grades.Count > 0)
             {
                 float gradesSum = 0;
-                foreach (var grade in Grades)
+                foreach (var grade in this.grades)
                     gradesSum += grade.Value;
-                return gradesSum / Grades.Count;
+                return gradesSum / grades.Count;
             }
             else
             {
                 return 0f;
             }
         }
-
     }
 }
