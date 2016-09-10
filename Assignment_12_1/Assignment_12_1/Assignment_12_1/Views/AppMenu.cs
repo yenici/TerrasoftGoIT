@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment_12_1.Utils
 {
-    class YMenu
+    class AppMenu
     {
-        private YMenu() { }
+        private AppMenu() { }
         public static int ProcessMenu(string menuTitle, string[] menuItems)
         {
             if (menuItems.Length == 0)
                 return 0;
             int maxIndex = menuItems.Length;
             int choice;
-            YMenu.DisplayMenu(menuTitle, menuItems);
+            AppMenu.DisplayMenu(menuTitle, menuItems);
             Console.WriteLine();
             int currentLineCursor = Console.CursorTop;
             while (true)
@@ -39,7 +35,7 @@ namespace Assignment_12_1.Utils
             if (menuTitle.Length > 0)
             {
                 Console.WriteLine(menuTitle);
-                Console.WriteLine(new string('=', menuTitle.Length));
+                Console.WriteLine(new string('=', Console.WindowWidth - 1));
             }
             for (int i = 0; i < menuItems.Length; i++)
                 Console.WriteLine("{0}. {1}", i + 1, menuItems[i]);

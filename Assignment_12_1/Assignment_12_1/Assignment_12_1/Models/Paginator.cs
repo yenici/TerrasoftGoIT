@@ -17,12 +17,12 @@ namespace Assignment_12_1.Models
     {
         private IEnumerable<T> source;
         private int itemsOnPage;
-        public decimal PageCount { get; private set; }
+        public int PageCount { get; private set; }
         public Paginator(IEnumerable<T> source, int itemsOnPage)
         {
             this.source = source;
             this.itemsOnPage = itemsOnPage;
-            this.PageCount = Math.Ceiling((decimal)(this.source.Count() / this.itemsOnPage));
+            this.PageCount = (int)Math.Ceiling((double)this.source.Count() / this.itemsOnPage);
         }
         public IEnumerable<T> GetPage(int pageNumber)
         {

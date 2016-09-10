@@ -48,8 +48,9 @@
     <Compile Include="Models\Store.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\StandartMessage.cs" />
-    <Compile Include="Utils\YMenu.cs" />
+    <Compile Include="Views\StandartMessage.cs" />
+    <Compile Include="Views\AppMenu.cs" />
+    <Compile Include="Views\App.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
