@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ConsoleApplication1.Models
+namespace Assignment_12_1.Models
 {
     /**
      * 

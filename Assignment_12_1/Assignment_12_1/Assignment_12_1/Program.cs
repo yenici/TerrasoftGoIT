@@ -1,11 +1,11 @@
-﻿using ConsoleApplication1.Models;
+﻿using Assignment_12_1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication1
+namespace Assignment_12_1
 {
     class Program
     {
@@ -62,7 +62,7 @@ namespace ConsoleApplication1
          */
         public static void Paginator(Store store)
         {
-            
+
         }
 
         /**
@@ -75,7 +75,7 @@ namespace ConsoleApplication1
          */
         public static void FindByKeywords(Store store, string[] keywords)
         {
-//Enter the keys separated by a space 
+            //Enter the keys separated by a space 
             //var result = from product in store
             //             where (from key in keywords
             //                    where product.Name.ToUpper().Contains(key.ToUpper())

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace ConsoleApplication1.Models
+namespace Assignment_12_1.Models
 {
     class Store : IEnumerable<Product>
     {

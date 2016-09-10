@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleApplication1.Models
+namespace Assignment_12_1.Models
 {
     class Product
     {
