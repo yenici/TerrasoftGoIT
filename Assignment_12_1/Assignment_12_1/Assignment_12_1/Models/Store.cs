@@ -29,7 +29,7 @@ namespace Assignment_12_1.Models
             //             orderby product.Price descending
             //             select product;
             var result = from product in this.products
-                         where keywords.Any(key => product.Name.ToUpper().Contains(key.ToUpper()))
+                         where keywords.Any(key => product.Name.ToUpper().Contains(key.Trim().ToUpper()))
                          orderby product.Name
                          select product;
             return result;
